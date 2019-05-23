@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.yuxy.myblog.mapper.CommentDAO">
+	<!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+	<select id="getCommentsByArticleID" resultMap="commentMap">
+		SELECT `comment`.*, `user`.`UserName` FROM `comment` INNER JOIN `user` ON `comment`.`UserID` = `user`.`UserID` WHERE `ArticleID` = #{arg0}
+	</select>
+	<insert id="addComment" parameterType="com.yuxy.myblog.domain.Comment">
+	    INSERT INTO `comment` (`UserID`, `ArticleID`, `Content`, `ReplyCommentID`) VALUES (#{user.UserID}, #{article.ArticleID}, #{Content}, #{replyComment.CommentID})
+	</insert>
+	<resultMap type="com.yuxy.myblog.domain.Comment" id="commentMap">
+	    <id column="CommentID" property="CommentID"></id>
+	    <result column="Content" property="Content"/>
+	    <result column="UpdateTime" property="UpdateTime"/>
+	    <association property="user" javaType="com.yuxy.myblog.domain.User">
+	        <id column="UserID" property="UserID"></id>
+	        <result column="UserName" property="UserName"/>
+	    </association>
+	    <association property="article" javaType="com.yuxy.myblog.domain.Article">
+	        <id column="ArticleID" property="ArticleID"></id>
+	        <result column="Title" property="Title"/>
+	    </association>
+	    <association property="replyComment" javaType="com.yuxy.myblog.domain.Comment">
+	        <id column="CommentID" property="CommentID"></id>
+	        <result column="Content" property="Content"></result>
+	        <association property="user" javaType="com.yuxy.myblog.domain.User">
+	        	<id column="UserID" property="UserID"></id>
+	        	<result column="UserName" property="UserName"/>
+	    	</association>
+	    </association>
+	</resultMap>
+</mapper>

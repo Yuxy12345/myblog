@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.yuxy.myblog.mapper.ArticleDAO">
+	<!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+	<!--获取所有文章 -->
+	<select id="getAllArticles" resultMap="Articleinf">
+		SELECT
+			`article`.`ArticleID`
+			,`article`.`Title`
+			, SUBSTRING(`article`.`Content`, 1, #{wordNum}) AS Content
+			, `user`.`UserName`
+			, `article`.`UpdateTime`
+			, `type`.`TypeName`
+		FROM
+			`myblog`.`article`
+			INNER JOIN `myblog`.`user`
+				ON (`article`.`UserID` = `user`.`UserID`)
+			INNER JOIN `myblog`.`type`
+				ON (`article`.`TypeID` = `type`.`TypeID`)
+		WHERE (`article`.`Status` ='publish');
+	</select>
+	
+	<select id="getMyArticleList" resultMap="Articleinf">
+	    SELECT
+			`article`.`ArticleID`
+			, `article`.`Title`
+			, `article`.`Status`
+			, `user`.`UserName`
+			, `article`.`UpdateTime`
+			, `type`.`TypeName`
+		FROM
+			`myblog`.`article`
+			INNER JOIN `myblog`.`user`
+				ON (`article`.`UserID` = `user`.`UserID`)
+			INNER JOIN `myblog`.`type`
+				ON (`article`.`TypeID` = `type`.`TypeID`)
+		WHERE (`article`.`UserID` = #{userID});
+	</select>
+	
+	<resultMap type="com.yuxy.myblog.domain.Article" id="Articleinf">
+	    <id column="ArticleID" property="ArticleID"/>
+	    <result column="Title" property="Title"/>
+	    <result column="Content" property="Content"/>
+	    <result column="UpdateTime" property="UpdateTime"/>
+	    <result column="Status" property="Status"/>
+	    <association property="user" javaType="com.yuxy.myblog.domain.User">
+	        <id column="UserID" property="UserID"/>
+	        <result column="UserName" property="UserName"/>
+	    </association>
+	    <association property="type" javaType="com.yuxy.myblog.domain.Type">
+	        <id column="TypeID" property="TypeID"/>
+	    	<result column="TypeName" property="TypeName"/>
+	    </association>
+	</resultMap>
+	
+	<!-- 获取获取指定ID的文章 -->
+	<select id="getArticle" resultMap="Articleinf" >
+		SELECT
+			`article`.`ArticleID`
+			,`article`.`Title`
+			, `article`.`Content`
+			, `user`.`UserName`
+			, `article`.`UpdateTime`
+			, `type`.`TypeName`
+		FROM
+			`myblog`.`article`
+			INNER JOIN `myblog`.`user`
+				ON (`article`.`UserID` = `user`.`UserID`)
+			INNER JOIN `myblog`.`type`
+				ON (`article`.`TypeID` = `type`.`TypeID`)
+		WHERE (`article`.`Status` = 'publish' AND ArticleID = #{articleId});
+	</select>
+	
+	<insert id="addArticle" parameterType="com.yuxy.myblog.domain.Article">
+	    INSERT INTO `article` (`Title`, `UserID`, `Content`, `Status`, `TypeID`, `Abbr`)
+	    VALUES(#{Title}, #{user.UserID}, #{Content}, #{Status}, #{type.TypeID}, #{Abbr})
+	</insert>
+	
+	<update id="submitArticle">
+	    UPDATE `article` SET `Status` = "check" WHERE ArticleID = #{articleID}
+	</update>
+	
+	<delete id="deleteArticle">
+	    DELETE FROM `article` WHERE `ArticleID` = #{arg0}
+	</delete>
+	
+	<select id="searchArticle" resultMap="Articleinf">
+	    SELECT 
+			`article`.`ArticleID`
+			,`article`.`Title`
+			, `article`.`Content`
+			, `user`.`UserName`
+			, `article`.`UpdateTime`
+			, `type`.`TypeName`
+		FROM 
+			`myblog`.`article`
+			INNER JOIN `myblog`.`user`
+				ON (`article`.`UserID` = `user`.`UserID`)
+			INNER JOIN `myblog`.`type`
+				ON (`article`.`TypeID` = `type`.`TypeID`)
+		WHERE (`article`.`Title` like '%${_parameter}%' OR `user`.`UserName` like '%${_parameter}%')
+	</select>
+</mapper>

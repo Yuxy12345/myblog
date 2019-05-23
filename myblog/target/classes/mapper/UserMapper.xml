@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.yuxy.myblog.mapper.UserDAO">
+	<!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+	<select id="findUser" resultType="com.yuxy.myblog.domain.User">
+		SELECT * FROM User WHERE UserName=#{arg0} AND PassWord=#{arg1}
+	</select>
+	<insert id="addUser" parameterType="com.yuxy.myblog.domain.User">
+	    INSERT INTO User(UserName, Email, PassWord, UserType) VALUES(#{UserName}, #{Email}, #{PassWord}, #{UserType})
+	</insert>
+	<select id="findAllUser" resultMap="userInfo">
+	    SELECT * FROM User;
+	</select>
+	<resultMap type="com.yuxy.myblog.domain.User" id="userInfo">
+	    <id column="UserID" property="UserID"/>
+	    <result column="UserName" property="UserName"/>
+	    <result column="PassWord" property="PassWord"/>
+	    <result column="Email" property="Email"/>
+	    <result column="UserType" property="UserType"/>
+	</resultMap>
+</mapper>
