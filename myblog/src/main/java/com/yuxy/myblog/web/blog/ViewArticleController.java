@@ -43,7 +43,7 @@ public class ViewArticleController extends CommonController {
 	 * @return
 	 */
 	@RequestMapping("/view-article/{id}")
-	public String viewArticle(HttpServletRequest request, @PathVariable("id") String articleId) {
+	public String viewArticle(HttpSession session, HttpServletRequest request, @PathVariable("id") String articleId) {
 		Article a = as.getArticle(new BigInteger(articleId));
 		request.setAttribute("article", a);
 		List<Comment> l = cs.getCommentsByArticleID(new BigInteger(articleId));
