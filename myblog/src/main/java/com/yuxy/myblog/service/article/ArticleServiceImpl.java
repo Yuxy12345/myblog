@@ -67,5 +67,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return ad.searchArticle(searchWord);
 	}
 
-	
+	@Override
+	public List<Article> getRecentArticle() {
+		return ad.getRecentArticle();
+	}
+
 }

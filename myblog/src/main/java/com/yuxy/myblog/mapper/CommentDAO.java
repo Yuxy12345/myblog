@@ -35,4 +35,12 @@ public interface CommentDAO {
 	 * @return 1成功
 	 */
 	public int addComment(Comment comment);
+	
+	/**
+	 * 获取最近评论
+	 * 
+	 * @return 
+	 */
+	public List<Comment> getRecentComment();
+	
 }

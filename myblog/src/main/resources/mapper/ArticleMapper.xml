@@ -101,4 +101,22 @@
 				ON (`article`.`TypeID` = `type`.`TypeID`)
 		WHERE (`article`.`Title` like '%${_parameter}%' OR `user`.`UserName` like '%${_parameter}%')
 	</select>
+	
+	<select id="getRecentArticle" resultMap="Articleinf">
+	    SELECT 
+			`article`.`ArticleID`
+			,`article`.`Title`
+			, `article`.`Content`
+			, `user`.`UserName`
+			, `article`.`UpdateTime`
+			, `type`.`TypeName`
+		FROM 
+			`myblog`.`article`
+			INNER JOIN `myblog`.`user`
+				ON (`article`.`UserID` = `user`.`UserID`)
+			INNER JOIN `myblog`.`type`
+				ON (`article`.`TypeID` = `type`.`TypeID`)
+		ORDER BY `UpdateTime` DESC
+		LIMIT 5 
+	</select>
 </mapper>

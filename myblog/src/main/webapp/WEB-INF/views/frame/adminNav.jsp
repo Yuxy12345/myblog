@@ -31,7 +31,6 @@
 				<li><a href="${ ctx }/admin/settings">设置</a>
 			</ul>
 			
-			<%@include file="../loginAndRegister/loginAndRegister.jsp" %>
 			<ul class="nav navbar-nav pull-right" style="margin-right: 20px"> 
 				<c:choose>
 					<c:when test="${empty sessionScope.user}">
@@ -57,6 +56,8 @@
 					</c:otherwise>
 				</c:choose>
 			</ul>
+			
+			<%@include file="../loginAndRegister/loginAndRegister.jsp" %>
 		</div>
 	</nav>
 </body>

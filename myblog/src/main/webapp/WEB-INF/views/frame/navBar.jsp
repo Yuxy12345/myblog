@@ -1,4 +1,4 @@
-<%@page import="org.springframework.web.context.request.SessionScope"%>
+<%@ page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/include/common.jsp"%>
@@ -17,7 +17,7 @@
 				<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
 					class="icon-bar"></span><span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${ ctx }/home">myblog</a>
+			<a class="navbar-brand" href="${ ctx }/home">${ sessionScope.siteName }</a>
 		</div>
 
 		<div class="collapse navbar-collapse"

@@ -16,7 +16,7 @@ $(function() {
 		/* 上传图片配置 */
 		imageUpload : true,
 		imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp", "webp" ],
-		imageUploadURL : "${ctx}/userRes", // 注意你后端的上传图片服务地址
+		imageUploadURL : "../userRes", // 注意你后端的上传图片服务地址
 	});
 });
 

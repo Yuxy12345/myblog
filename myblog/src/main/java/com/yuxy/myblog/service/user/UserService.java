@@ -1,5 +1,6 @@
 package com.yuxy.myblog.service.user;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import com.yuxy.myblog.domain.User;
@@ -39,5 +40,19 @@ public interface UserService {
 	 */
 	public int addUser(String userName, String passWord, String email, String userType);
 	
+	/**
+	 * 寻找所有用户
+	 * 
+	 * @return
+	 */
 	public List<User> findAllUser();
+	
+	/**
+	 * 改变邮箱
+	 * 
+	 * @param userID
+	 * @param user
+	 * @return
+	 */
+	public int changeEmail(BigInteger userID, String email);
 }

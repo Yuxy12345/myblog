@@ -14,14 +14,18 @@
 				<%@include file="../frame/navBar.jsp" %>
 				
 				<div class="jumbotron" style="margin-top: 80px">
-					<h1>欢迎，朋友！</h1>
-					<p>This is a template for a simple marketing or informational
-						website. It includes a large callout called the hero unit and
-						three supporting pieces of content. Use it as a starting point to
-						create something more unique.</p>
-					<p>
-						<a class="btn btn-primary btn-large" href="#">Learn more</a>
-					</p>
+					<h1>
+						欢迎，
+						<c:choose>
+							<c:when test="${empty sessionScope.user}">
+								朋友！
+							</c:when>
+							<c:otherwise>
+								${ sessionScope.user.userName }！
+							</c:otherwise>
+						</c:choose>
+					</h1>
+					<p>${ sessionScope.welcomeWord }</p>
 				</div>
 			</div>
 		</div>

@@ -19,7 +19,7 @@
 			<!-- 构造form表单，以便提交数据-->
 			<form id="formBlog" method="post">
 				<input id="blog_title" name="title" value="" style="display: none;"></input>
-				<textarea id="blog_md" name="md" style="display: none;">${ article.content }</textarea>
+				<textarea id="blog_md" name="md" style="display: none;"></textarea>
 			</form>
 			<div class="row">
 				<div class="panel panel-primary">
@@ -50,7 +50,9 @@
 					<div class="panel-body">
 						<div class="row">
 							<!-- md文件编辑器编辑区域 后续js中会使用到 -->
-							<div id="blog_mdedit"></div>
+							<div id="blog_mdedit">
+								<textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" style="display: none;">${ article.content }</textarea>
+							</div>
 						</div>
 					</div>
 				</div>

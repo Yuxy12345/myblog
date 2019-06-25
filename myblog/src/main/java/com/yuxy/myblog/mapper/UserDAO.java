@@ -37,4 +37,11 @@ public interface UserDAO {
 	 * @return 用户列表
 	 */
 	public List<User> findAllUser();
+	
+	/**
+	 * 更新电子邮箱信息
+	 * @param user
+	 * @return
+	 */
+	public int updateEmail(User user);
 }

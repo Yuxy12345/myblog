@@ -25,4 +25,9 @@ public class CommentServiceImpl implements CommentService {
 	public int addComment(Comment comment) {
 		return cd.addComment(comment);
 	}
+
+	@Override
+	public List<Comment> getRecentComment() {
+		return cd.getRecentComment();
+	}
 }

@@ -20,6 +20,7 @@ import com.yuxy.myblog.domain.Comment;
 import com.yuxy.myblog.domain.User;
 import com.yuxy.myblog.service.article.ArticleService;
 import com.yuxy.myblog.service.comment.CommentService;
+import com.yuxy.myblog.web.common.CommonController;
 
 /**
   * 查看文章控制器
@@ -28,7 +29,7 @@ import com.yuxy.myblog.service.comment.CommentService;
  *
  */
 @Controller
-public class ViewArticleController {
+public class ViewArticleController extends CommonController {
 	
 	@Autowired
 	private ArticleService as;

@@ -30,4 +30,8 @@
 	    	</association>
 	    </association>
 	</resultMap>
+	
+	<select id="getRecentComment" resultMap="commentMap">
+	    SELECT `comment`.*, `user`.`UserName`, `article`.`Title` FROM `comment` INNER JOIN `user` ON `comment`.`UserID` = `user`.`UserID` INNER JOIN `article` ON `article`.`ArticleID` = `comment`.`CommentID` ORDER BY `UpdateTime` DESC LIMIT 5 
+	</select>
 </mapper>

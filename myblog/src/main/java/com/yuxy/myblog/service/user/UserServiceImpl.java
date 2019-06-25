@@ -1,5 +1,6 @@
 package com.yuxy.myblog.service.user;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -53,6 +54,14 @@ public class UserServiceImpl implements UserService{
 			}
 		}
 		return l;
+	}
+
+	@Override
+	public int changeEmail(BigInteger userID, String email) {
+		User user = new User();
+		user.setUserID(userID);
+		user.setEmail(email);
+		return ud.updateEmail(user);
 	}
 
 }

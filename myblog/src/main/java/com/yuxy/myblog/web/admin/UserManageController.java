@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yuxy.myblog.domain.User;
 import com.yuxy.myblog.service.user.UserService;
+import com.yuxy.myblog.web.common.CommonController;
 
 @Controller
-public class UserManageController {
+public class UserManageController extends CommonController {
 	
 	@Autowired
 	UserService us;

@@ -22,6 +22,7 @@ import com.yuxy.myblog.domain.Type;
 import com.yuxy.myblog.domain.User;
 import com.yuxy.myblog.service.article.ArticleService;
 import com.yuxy.myblog.service.type.TypeService;
+import com.yuxy.myblog.web.common.CommonController;
 
 /**
  * 编辑文章控制器
@@ -31,7 +32,7 @@ import com.yuxy.myblog.service.type.TypeService;
  *
  */
 @Controller
-public class ArticleManageController {
+public class ArticleManageController extends CommonController {
 
 	@Autowired
 	ArticleService as;

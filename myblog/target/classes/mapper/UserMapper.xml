@@ -19,4 +19,7 @@
 	    <result column="Email" property="Email"/>
 	    <result column="UserType" property="UserType"/>
 	</resultMap>
+	<update id="updateEmail" parameterType="com.yuxy.myblog.domain.User">
+	    UPDATE `user` SET `Email` = #{Email} WHERE `UserID` = #{UserID}
+	</update>
 </mapper>

@@ -72,4 +72,10 @@ public interface ArticleDAO {
 	 * @return 搜索的文章列表
 	 */
 	public List<Article> searchArticle(String searchWord);
+	
+	/**
+	 * 获取最近发表的文章
+	 * @return
+	 */
+	public List<Article> getRecentArticle();
 }
