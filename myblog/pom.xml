@@ -11,7 +11,7 @@
 
 	<properties>
 		<!--描述了这个项目构建环境中的前提条件。 -->
-		<spring.version>5.1.6.RELEASE</spring.version>
+		<spring.version>5.2.3.RELEASE</spring.version>
 		<!--构建该项目或使用该插件所需要的Maven的最低版本 -->
 	</properties>
 
